@@ -30,5 +30,25 @@ void weatherHandler(const char *name, const char *data) {
 }
 
 void updateBrightness(String status){
-  
+  if (status >1 && status < 4){
+    Serial.println("It's sunny");
+
+  }
+
+  if (status >12 && status < 29 || status >33 && status < 44){
+    Serial.println("It's sucks outside");
+
+  }
+
+}
+
+void weatherAlert(String status){
+  if (status == "Fire"){
+
+  }
+
+  if(status = "Flood"){
+
+  }
+
 }
