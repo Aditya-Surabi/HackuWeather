@@ -25,7 +25,7 @@ void loop(){
 void weatherHandler(const char *name, const char *data) {
 
   String str = String(data);
-  String weatherIcon = tryExtractString(str,"<WeatherIcon>", "</WeatherIcon>");
+  int weatherIcon = atoi(tryExtractString(str,"<WeatherIcon>", "</WeatherIcon>"));
   String IsDayTime = tryExtractString(str,"<IsDayTime>", "</IsDayTime>");
   Serial.println(weatherIcon);
   Serial.println(IsDayTime);
@@ -47,9 +47,11 @@ String tryExtractString(String str, const char* start, const char* end){
   }
 
   return str.substring(idx + strlen(start), endIdx);
+}
 
-void updateBrightness(String status){
-  if (status >1 && status < 4){
+
+void updateBrightness(int status){
+  if (status > 1 && status < 4){
     Serial.println("It's sunny");
 
   }
@@ -58,7 +60,6 @@ void updateBrightness(String status){
     Serial.println("It's sucks outside");
 
   }
-
 }
 
 void weatherAlert(String status){
@@ -66,7 +67,7 @@ void weatherAlert(String status){
 
   }
 
-  if(status = "Flood"){
+  if(status == "Flood"){
 
   }
 }
