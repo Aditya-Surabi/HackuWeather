@@ -3,6 +3,9 @@
 #define BLUEPIN D0
 void setup(){
   Serial.begin(115200); //baud rate
+  pinMode(REDPIN, OUTPUT);
+  pinMode(GREENPIN, OUTPUT);
+  pinMode(BLUEPIN, OUTPUT);
 
   //subscribe to a webhook and lookout for new data
   Particle.subscribe("hook-response/get_weather", weatherHandler, MY_DEVICES);
@@ -56,21 +59,34 @@ String tryExtractString(String str, const char* start, const char* end){
 void updateBrightness(int status){
   if (status > 1 && status < 4){
     Serial.println("It's sunny");
-
+    setRGB(0,0,0); //No light
   }
 
   if (status >12 && status < 29 || status >33 && status < 44){
     Serial.println("It's sucks outside");
+    setRGB(100,45,9); //Tangerine
 
   }
 }
 
 void weatherAlert(String status){
   if (status == "Fire"){
-
+    Serial.println("Mixtape");
+    for(int i =0; i < 10; i++){
+      setRGB(255,0,0);
+      delay(1000);
+      setRGB(0,0,0);
+      delay(1000);
+    }
   }
 
   if(status == "Flood"){
 
   }
+}
+
+void setRGB(int r, int g, int b){
+  analogWrite(REDPIN, r);
+  analogWrite(GREENPIN, g);
+  analogWrite(BLUEPIN, b);
 }
