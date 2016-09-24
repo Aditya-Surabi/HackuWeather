@@ -25,6 +25,25 @@ void loop(){
 void weatherHandler(const char *name, const char *data) {
 
   String str = String(data);
-  Serial.println(str);
+  String weatherIcon = tryExtractString(str,"<WeatherIcon>", "</WeatherIcon>");
+  String IsDayTime = tryExtractString(str,"<IsDayTime>", "</IsDayTime>");
+  Serial.println(weatherIcon);
+  Serial.println(IsDayTime);
 
+}
+
+String tryExtractString(String str, const char* start, const char* end){
+  if (str == NULL){
+    return NULL;
+  }
+  int idx = str.indexOf(start);
+  if (idx < 0){
+    return NULL;
+  }
+  int endIdx = str.indexOf(end);
+  if (endIdx < 0){
+    return NULL;
+  }
+
+  return str.substring(idx + strlen(start), endIdx);
 }
