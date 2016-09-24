@@ -1,3 +1,6 @@
+#define REDPIN D2
+#define GREENPIN D1
+#define BLUEPIN D0
 void setup(){
   Serial.begin(115200); //baud rate
 
