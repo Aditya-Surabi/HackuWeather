@@ -28,3 +28,7 @@ void weatherHandler(const char *name, const char *data) {
   Serial.println(str);
 
 }
+
+void updateBrightness(String status){
+  
+}
