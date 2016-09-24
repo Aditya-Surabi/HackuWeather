@@ -41,3 +41,14 @@ void updateBrightness(String status){
   }
 
 }
+
+void weatherAlert(String status){
+  if (status == "Fire"){
+
+  }
+
+  if(status = "Flood"){
+
+  }
+
+}
