@@ -19,7 +19,6 @@ $(document).ready(function(){
 	// write weather data to html	
 	$("#weather-data").append("\
 		<h2>It's " + temperature + " &deg;C. With " + weatherText + " " + night_or_day + "time conditions.</h2>\
-		
 		"); // end weather data html
 
 
