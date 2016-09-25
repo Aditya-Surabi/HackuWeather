@@ -1,15 +1,61 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 	<head>
-		<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44"   crossorigin="anonymous"></script>
-		<script type="text/javascript" src="script.js"></script>
+		<title>Feels.io</title>
+		<!-- STYLE -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css">
 	</head>
-
+	
 	<body>
-		<audio controls autoplay>
-		  <source src="http://d318706lgtcm8e.cloudfront.net/mp3-preview/f454c8224828e21fa146af84916fd22cb89cedc6" type="audio/ogg">
-		  <source src="http://d318706lgtcm8e.cloudfront.net/mp3-preview/f454c8224828e21fa146af84916fd22cb89cedc6" type="audio/mpeg">
-		  Your browser does not support the audio element.
-		</audio>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 row-centered">
+					<h1 class="header">Feels</h1> <!-- HEADER -->
+				</div>
+			</div>
+			
+			<!-- WEATHER DATA -->
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="weather-data">
+						
+					</div>
+				</div>
+			</div>
+
+			<!-- SLIDERS -->
+			<div class="row row-centered">
+				<div class="col-sm-1 col-centered">
+					<img src="assets/images/light-bulb-icon.png" class="img-responsive">
+				</div>
+			</div>
+			<br />
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-4">
+					<input id="light1" type="range" min="0" max="5" step=".1" />
+				</div>
+			</div>
+		</div>
+
+		<!-- AUDIO PLAYER -->
+		<div class="row">
+			<audio controls autoplay class="sticky-bottom">
+			  <source src="http://d318706lgtcm8e.cloudfront.net/mp3-preview/f454c8224828e21fa146af84916fd22cb89cedc6" type="audio/ogg">
+			  <source src="http://d318706lgtcm8e.cloudfront.net/mp3-preview/f454c8224828e21fa146af84916fd22cb89cedc6" type="audio/mpeg">
+			  Your browser does not support the audio element.
+			</audio>
+		</div>	
+	
+		<!-- JS SCRIPTS -->
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44"   crossorigin="anonymous"></script>
+		<script type="text/javascript" src="assets/js/weather.js"></script>
+		<script type="text/javascript" src="assets/js/audio.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</body>
 </html>
+

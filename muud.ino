@@ -14,7 +14,7 @@ void setup(){
 void loop(){
 
     // hold up, wait a minute lemme get some json in it.
-    for(int i=10; i >= 0; i--){
+    for(int i=60; i >= 0; i--){
       Serial.print("Seconds until data request: ");
       Serial.print(i);
       Serial.println();
