@@ -15,6 +15,10 @@ $(document).ready(function(){
 		}
 
 		console.log("Ayy console squad.");
+		console.log("text "+ weatherText);
+		var mood = textToMood(weatherText);
+		console.log("Mood "+mood);
+		$('#aud').prop('src',mood);
 
 	// write weather data to html
 	$("#weather-data").append("\
@@ -29,6 +33,8 @@ $(document).ready(function(){
 			// $("#audio-player").prop('src',mood);
 
 
+
+
 // ------------------------------------------------------------------------------------------------------------------- //
 
 	// get json object for audio api
@@ -39,22 +45,24 @@ $(document).ready(function(){
 
 
 	// write audio data to html
-	$("#audio-player").append("\
-		<iframe class='sticky-bottom' id='aud' src='https://8tracks.com/mixes/672112/player_v3_universal/' width='100%' height='200px' style='border: 0 none;''></iframe>\
-	");
+	// $("#audio-player").append("\
+	// 	<iframe class='sticky-bottom' src='https://8tracks.com/mixes/672112/player_v3_universal/' id='aud' width='100%' height='200px' style='border: 0 none;''></iframe>\
+	// ");
 
 		}); //close audio function
-
-
+		//var mood = 'https://8tracks.com/wildernessqueen/on-a-cold-night/player_v3_universal/';
+		// var mood = textToMood(weatherText);
+		// console.log("The append mood "+mood);
+		// $('#aud').prop('src',mood);
 }); //close function main
 
 function textToMood(text) {
 	var mood;
-	if(text == "Sunny"){
+	if(text == "Sunny" || text == "Clear"){
 		mood = 'https://8tracks.com/mixes/672112/player_v3_universal/'
 	}
 
-	if(text == "Cloudy"){
+	else{
 		mood = 'https://8tracks.com/wildernessqueen/on-a-cold-night/player_v3_universal/'
 	}
 
