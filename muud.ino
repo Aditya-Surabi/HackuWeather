@@ -3,10 +3,9 @@
 #define BLUEPIN D0
 
 int weatherIcon;
+int intensity = NULL;
 
 void setup(){
-
-  //int intensity = 0;
 
   Serial.begin(115200); //baud rate
   pinMode(REDPIN, OUTPUT);
@@ -16,8 +15,8 @@ void setup(){
   //subscribe to a webhook and lookout for new data
   // Particle.subscribe("hook-response/get_weather", weatherHandler, MY_DEVICES); // Toronto
   Particle.subscribe("hook-response/get_weather_india", weatherHandler, MY_DEVICES); // Mumbai
-  //Particle.function(); //set
-  //Particle.variable("intensity",&intensity, INT);
+  Particle.function("setIntensity", setIntensity); //set
+  Particle.variable("getintensity", &intensity, INT);
 }
 
 void loop(){
@@ -33,7 +32,14 @@ void loop(){
     Serial.println("Requesting Accuweather Data..");
     // Particle.publish("get_weather"); //publish webhook
     Particle.publish("get_weather_india"); //publish webhook
-    updateBrightness(14);
+
+    if (intensity != NULL){
+
+    }else {
+      updateBrightness(weatherIcon);
+    }
+
+    Serial.println(intensity);
     delay(3000); // pls wait
 
 }
@@ -103,11 +109,11 @@ void setRGB(int r, int g, int b){
   analogWrite(GREENPIN, g);
   analogWrite(BLUEPIN, b);
 }
-/*
+
 int setIntensity(String intensityValue){
   intensity = intensityValue.toInt();
-
-  // write
-  return 0;
+  int r = 255 * (intensity/10);
+  int g = 255 * (intensity/10);
+  int b = 255 * (intensity/10);
+  setRGB(r,g,b);
 }
-*/
