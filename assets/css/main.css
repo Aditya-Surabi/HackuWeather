@@ -17,7 +17,7 @@ body {
 }
 
 /* centered columns styles */
-.row-centered {
+.text-center {
     text-align:center;
 }
 .col-centered {
@@ -27,4 +27,8 @@ body {
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+#weather-data{
+	padding-bottom: 25px;
 }

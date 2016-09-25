@@ -2,6 +2,9 @@
 #define GREENPIN D1
 #define BLUEPIN D0
 void setup(){
+
+  int intensity = 0;
+
   Serial.begin(115200); //baud rate
   pinMode(REDPIN, OUTPUT);
   pinMode(GREENPIN, OUTPUT);
@@ -9,6 +12,8 @@ void setup(){
 
   //subscribe to a webhook and lookout for new data
   Particle.subscribe("hook-response/get_weather", weatherHandler, MY_DEVICES);
+  Particle.function(); //set
+  Particle.variable("intensity",&intensity, INT);
 }
 
 void loop(){
@@ -57,9 +62,13 @@ String tryExtractString(String str, const char* start, const char* end){
 
 
 void updateBrightness(int status){
+  if (status <=1 ){
+    Serial.println("It's perfect outside!");
+    setRGB(0,0,0); //No light
+  }
   if (status > 1 && status < 4){
     Serial.println("It's sunny");
-    setRGB(0,0,0); //No light
+    setRGB(35,15,7); //some light
   }
 
   if (status >12 && status < 29 || status >33 && status < 44){
@@ -71,7 +80,7 @@ void updateBrightness(int status){
 
 void weatherAlert(String status){
   if (status == "Fire"){
-    Serial.println("Mixtape");
+    Serial.println("Mixtape just dropped.");
     for(int i =0; i < 10; i++){
       setRGB(255,0,0);
       delay(1000);
@@ -89,4 +98,10 @@ void setRGB(int r, int g, int b){
   analogWrite(REDPIN, r);
   analogWrite(GREENPIN, g);
   analogWrite(BLUEPIN, b);
+}
+
+int setIntensity(String intensityValue){
+  intensity = intensityValue.toInt();
+  // write
+  return 0;
 }
