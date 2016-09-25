@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var weatherText;
 	// get json object for accuweather api
 	// 204842
-	$.getJSON("http://apidev.accuweather.com/currentconditions/v1/204842.json?apikey=HackuWeather2016", function(weatherData){ //don't bother the apikey is expired
+	$.getJSON("http://apidev.accuweather.com/currentconditions/v1/55488.json?apikey=HackuWeather2016", function(weatherData){ //don't bother the apikey is expired
 		var weatherIcon = weatherData[0].WeatherIcon;
 		weatherText = weatherData[0].WeatherText;
 		var isDay = weatherData[0].IsDayTime;
@@ -41,8 +41,6 @@ $(document).ready(function(){
 		var link = object["playlists"].href;
 		console.log(link);
 		console.log("shout out to the homies in da console!");
-
-
 
 
 		}); //close audio function
