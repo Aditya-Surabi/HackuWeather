@@ -8,11 +8,14 @@ window.setInterval(function() {
   requestURL = "https://api.spark.io/v1/devices/" + deviceID + "/" + getFunc + "/?access_token=" + accessToken;
   $.getJSON(requestURL, function(json) {
            document.getElementById("light1").value = parseInt(json.result);
-           console.log(json.result);
+         //  var toggle_lights = json[]
+           console.log(json);
            });
-}, 1000);
+}, 500);
 
 function setValue(obj) {
+
+	//if(toggle_lights){}
   var newValue = document.getElementById('light1').value;
   photonSetVal(newValue);
 }

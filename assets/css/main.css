@@ -6,9 +6,15 @@ body {
 .header {
 	font-family: 'Lobster', cursive;
 	font-size: 75px;
-	margin: 15px 0 75px 0;
+	margin: 15px 0 0 0;
 }
 
+.tagline{
+	font-family: sans-serif;
+	font-size: 15px;
+	color:#A593E0;
+	margin: 10px 0 75px 0;
+}
 .sticky-bottom {
 	position:absolute;
 	bottom:0;

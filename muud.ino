@@ -4,6 +4,16 @@
 
 int weatherIcon;
 int intensity = NULL;
+bool check = false;
+
+int setIntensity(String intensityValue){
+  intensity = intensityValue.toInt();
+  int r = 255 * (intensity/10);
+  int g = 255 * (intensity/10);
+  int b = 255 * (intensity/10);
+  setRGB(r,g,b);
+}
+
 
 void setup(){
 
@@ -13,16 +23,17 @@ void setup(){
   pinMode(BLUEPIN, OUTPUT);
 
   //subscribe to a webhook and lookout for new data
-  // Particle.subscribe("hook-response/get_weather", weatherHandler, MY_DEVICES); // Toronto
+  //Particle.subscribe("hook-response/get_weather", weatherHandler, MY_DEVICES); // Toronto
   Particle.subscribe("hook-response/get_weather_india", weatherHandler, MY_DEVICES); // Mumbai
   Particle.function("setIntensity", setIntensity); //set
   Particle.variable("getintensity", &intensity, INT);
+  //Particle.variable("getCheck", &check, bool);
 }
 
 void loop(){
 
     // hold up, wait a minute lemme get some json in it.
-    for(int i=10; i >= 0; i--){
+    for(int i=5; i >= 0; i--){
       Serial.print("Seconds until data request: ");
       Serial.print(i);
       Serial.println();
@@ -33,14 +44,17 @@ void loop(){
     // Particle.publish("get_weather"); //publish webhook
     Particle.publish("get_weather_india"); //publish webhook
 
-    if (intensity != NULL){
 
-    }else {
+
+
+    //if (intensity != NULL){
+      //setIntensity(intensity.toInt());
+    //}else {
       updateBrightness(weatherIcon);
-    }
+    //}
 
     Serial.println(intensity);
-    delay(3000); // pls wait
+   // pls wait
 
 }
 
@@ -79,7 +93,7 @@ void updateBrightness(int status){
   }
   if (status > 1 && status < 4){
     Serial.println("It's sunny");
-    setRGB(35,15,7); //some light
+    setRGB(255,15,7); //some light
   }
 
   if (status >12 && status < 29 || status >33 && status < 44){
@@ -100,7 +114,7 @@ void weatherAlert(String status){
   }
 
   if(status == "Flood"){
-
+    setRGB(255,0,0);
   }
 }
 
@@ -108,12 +122,4 @@ void setRGB(int r, int g, int b){
   analogWrite(REDPIN, r);
   analogWrite(GREENPIN, g);
   analogWrite(BLUEPIN, b);
-}
-
-int setIntensity(String intensityValue){
-  intensity = intensityValue.toInt();
-  int r = 255 * (intensity/10);
-  int g = 255 * (intensity/10);
-  int b = 255 * (intensity/10);
-  setRGB(r,g,b);
 }
